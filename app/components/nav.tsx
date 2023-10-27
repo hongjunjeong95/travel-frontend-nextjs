@@ -14,10 +14,14 @@ const Nav = () => {
           placeholder="상품 검색"
         />
       </div>
-      <div className="flex justify-between w-1/4 items-center">
-        <div>파트너 로그인</div>
-        <div>로그인</div>
-        <div className="border-blue-400 text-blue-400 border-solid border py-2 px-4">
+      <div className="flex justify-between w-80 items-center ">
+        <div className="hover:bg-gray-200 text-gray-500 px-4 py-2 transition-all duration-400">
+          파트너 로그인
+        </div>
+        <div className="hover:bg-gray-200 text-gray-500 px-4 py-2 transition-all duration-400">
+          로그인
+        </div>
+        <div className="hover:bg-blue-100 border-blue-500 text-blue-500 border-solid border py-2 px-4 transition-all duration-400">
           회원가입
         </div>
       </div>
