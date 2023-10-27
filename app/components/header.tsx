@@ -4,7 +4,7 @@ import Categories from "./categories";
 
 const Header = () => {
   return (
-    <header className="mb-10 border-b border-gray-300 border-solid pb-4">
+    <header className="mt-5 mb-10 border-b border-gray-300 border-solid pb-4">
       <div className="mx-56">
         <Nav />
         <Categories />

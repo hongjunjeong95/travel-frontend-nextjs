@@ -1,15 +1,11 @@
-import Footer from "./components/footer";
-import Header from "./components/header";
-import Main from "./components/main";
+import MainHeader from "./components/mainHeader";
 
 export default function Home() {
   return (
     <>
-      <div className="my-5">
-        <Header />
-        <Main />
-        <Footer />
-      </div>
+      <main className="mx-56 mb-20">
+        <MainHeader />
+      </main>
     </>
   );
 }
