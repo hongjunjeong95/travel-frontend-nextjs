@@ -1,10 +1,13 @@
+import Link from "next/link";
 import React from "react";
 
 const Nav = () => {
   return (
     <nav className="flex justify-between items-center mb-5">
       <div className="flex items-center">
-        <div className="mr-10 text-2xl font-bold">TravelApp</div>
+        <Link href="/" className="mr-10 text-2xl font-bold">
+          TravelApp
+        </Link>
         <input
           type="text"
           className="border-black-500 border-solid border-2 p-3"
