@@ -1,14 +1,14 @@
 "use client";
 
-import Input from "@/app/components/common/input";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
-import { apiClient } from "@/apis/network/client";
-import { UserRole } from "@/apis/entities/users/user.entity";
-import { SignUpBodyDto } from "@/apis/dtos/auth/sign-up.dto";
-import { FormError } from "@/app/components/common/formError";
+import { apiClient } from "@apis/network/client";
+import { SignUpBodyDto } from "@apis/dtos/auth/sign-up.dto";
+import Input from "@components/common/input";
+import FormError from "@components/common/formError";
+import { UserRole } from "@apis/entities/users/user.entity";
 
 export type SignUpFormType = {
   email: string;

@@ -1,4 +1,4 @@
-import SignComponent from "@/app/components/common/signComponent";
+import SignComponent from "@components/common/signComponent";
 import Link from "next/link";
 import React from "react";
 
