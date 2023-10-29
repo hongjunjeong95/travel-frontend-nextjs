@@ -18,9 +18,12 @@ const Nav = () => {
         <div className="hover:bg-gray-200 text-gray-500 px-4 py-2 transition-all duration-400">
           파트너 로그인
         </div>
-        <div className="hover:bg-gray-200 text-gray-500 px-4 py-2 transition-all duration-400">
+        <Link
+          href={"/users/sign-in"}
+          className="hover:bg-gray-200 text-gray-500 px-4 py-2 transition-all duration-400"
+        >
           로그인
-        </div>
+        </Link>
         <Link
           href={"/users/sign-up"}
           className="hover:bg-blue-100 border-blue-500 text-blue-500 border-solid border py-2 px-4 transition-all duration-400"
