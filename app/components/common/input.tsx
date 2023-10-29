@@ -1,12 +1,20 @@
 import React, { HTMLInputTypeAttribute } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
 
-const Input = ({ labelText, htmlFor, placeholder, type }: Prop) => {
+const Input = <FormType extends unknown>({
+  register,
+  labelText,
+  htmlFor,
+  placeholder,
+  type,
+}: Prop<FormType>) => {
   return (
     <div className="flex flex-col mb-4">
       <label htmlFor={htmlFor} className="text-sm mb-2">
         {labelText}
       </label>
       <input
+        {...register}
         type={type}
         id={htmlFor}
         placeholder={placeholder}
@@ -18,7 +26,8 @@ const Input = ({ labelText, htmlFor, placeholder, type }: Prop) => {
 
 export default Input;
 
-type Prop = {
+type Prop<Omit> = {
+  register: UseFormRegisterReturn;
   labelText: string;
   type: HTMLInputTypeAttribute;
   htmlFor: string;
