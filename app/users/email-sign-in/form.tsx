@@ -104,7 +104,7 @@ const EmailSignInForm = () => {
       <div className="flex items-center justify-center">
         <input
           type="submit"
-          value="회원가입"
+          value="로그인"
           className={`mt-4 text-white w-full py-4 rounded-md ${
             isValid ? "bg-blue-500" : "bg-blue-200"
           }`}
