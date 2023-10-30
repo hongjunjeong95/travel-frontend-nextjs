@@ -5,16 +5,18 @@ import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
 import { apiClient } from "@apis/network/client";
-import { SignInBodyDto } from "@apis/dtos/auth/sign-in.dto";
+import { SignInBodyDto, SignInResponseDto } from "@apis/dtos/auth/sign-in.dto";
 import Input from "@components/common/input";
 import FormError from "@components/common/formError";
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
 
 export type SignInFormType = {
   email: string;
   password: string;
-  confirmPassword: string;
 };
 const EmailSignInForm = () => {
+  const router = useRouter();
   const authService = apiClient.auth;
 
   const validationSchema = Joi.object<SignInFormType>({
@@ -37,16 +39,6 @@ const EmailSignInForm = () => {
         )
       )
       .message("패스워드에 특수문자, 문자, 숫자가 반드시 포함되어야 합니다."),
-    confirmPassword: Joi.string()
-      .optional()
-      .min(8)
-      .message("패스워드는 8자리 이상이어야 합니다.")
-      .pattern(
-        new RegExp(
-          /(?=.*[!@#$%^&\*\(\)_\+\-=\[\]\{\};\':\"\\\|,\.<>\/\?]+)(?=.*[a-zA-Z]+)(?=.*\d+)/
-        )
-      )
-      .message("패스워드에 특수문자, 문자, 숫자가 반드시 포함되어야 합니다."),
   });
 
   const {
@@ -59,12 +51,19 @@ const EmailSignInForm = () => {
     resolver: joiResolver(validationSchema),
   });
 
-  const signIn = async ({ email, password }: SignInBodyDto) =>
-    authService.signIn({ email, password });
+  const {
+    isError,
+    error: queryError,
+    mutateAsync: signInMutate,
+  } = useMutation<SignInResponseDto, Error, SignInBodyDto, unknown>({
+    mutationFn: authService.signIn,
+  });
 
-  const onSubmit = () => {
-    const { email, password, confirmPassword } = getValues();
-    signIn({ email, password });
+  const onSubmit = async () => {
+    const { email, password } = getValues();
+
+    await signInMutate({ email, password });
+    router.push("/");
   };
 
   return (
@@ -101,7 +100,7 @@ const EmailSignInForm = () => {
       {errors.password?.message && (
         <FormError errorMessage={errors.password.message} />
       )}
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center mb-4">
         <input
           type="submit"
           value="로그인"
@@ -110,6 +109,7 @@ const EmailSignInForm = () => {
           }`}
         />
       </div>
+      {isError && <FormError errorMessage={queryError.message} />}
     </form>
   );
 };

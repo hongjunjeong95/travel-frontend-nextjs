@@ -1,9 +1,12 @@
-import { SignInBodyDto, SignInResponseDto } from "@/apis/dtos/auth/sign-in.dto";
-import { SignUpBodyDto, SignUpResponseDto } from "@/apis/dtos/auth/sign-up.dto";
-import { HttpClient } from "@/apis/network/http";
+import { SignInBodyDto, SignInResponseDto } from "@apis/dtos/auth/sign-in.dto";
+import { SignUpBodyDto, SignUpResponseDto } from "@apis/dtos/auth/sign-up.dto";
+import { HttpClient } from "@apis/network/http";
 
 export class AuthService {
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {
+    this.signUp = this.signUp.bind(this);
+    this.signIn = this.signIn.bind(this);
+  }
 
   private static instance: AuthService;
 

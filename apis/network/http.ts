@@ -1,4 +1,5 @@
 import axios, {
+  AxiosError,
   AxiosRequestConfig,
   AxiosResponse,
   InternalAxiosRequestConfig,
@@ -26,9 +27,10 @@ export class HttpClient {
     } catch (error: any) {
       const res = error.response;
       const message =
-        res.data && res.data.error.message
-          ? res.data.error.message
+        res?.data && res.data?.message
+          ? res.data.message
           : "Something went wrong!";
+
       throw new Error(message);
     }
   }
