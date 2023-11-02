@@ -2,13 +2,14 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
-import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
-import { apiClient } from "@apis/network/client";
-import { SignUpBodyDto } from "@apis/dtos/auth/sign-up.dto";
+
+import { joiResolver } from "@hookform/resolvers/joi";
 import Input from "@components/common/input";
 import FormError from "@components/common/formError";
-import { UserRole } from "@apis/entities/users/user.entity";
+import { clientApi } from "@client/apis/network/client.api";
+import { SignUpBodyDto } from "@client/apis/dtos/auth/sign-up.dto";
+import { UserRole } from "apis/common/entities/users/user.entity";
 
 export type SignUpFormType = {
   email: string;
@@ -16,7 +17,7 @@ export type SignUpFormType = {
   confirmPassword: string;
 };
 const EmailSignUpForm = () => {
-  const authService = apiClient.auth;
+  const authService = clientApi.auth;
 
   const validationSchema = Joi.object<SignUpFormType>({
     email: Joi.string()

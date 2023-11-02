@@ -21,7 +21,8 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@apis/*": ["apis/*"],
+      "@client/apis/*": ["apis/client/*"],
+      "@server/apis/*": ["apis/server/*"],
       "@components/*": ["app/components/*"],
       "@config/*": ["common/config/*"],
     },

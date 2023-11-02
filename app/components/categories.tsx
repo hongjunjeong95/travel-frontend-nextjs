@@ -5,7 +5,7 @@ const Categories = () => {
   return (
     <div>
       <div>
-        <Link href="/experiences" className="flex items-center">
+        <Link href="/experiences" className="flex items-center w-2/12">
           <img
             src="https://d2ur7st6jjikze.cloudfront.net/cms_icons/89_original_1657589745.png?1657589745"
             alt="투어·티켓"

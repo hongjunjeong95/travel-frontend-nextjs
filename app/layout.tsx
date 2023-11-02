@@ -19,11 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
         <QueryProviders>
+          <Header />
           <main className="mx-56 mb-20">{children}</main>
+          <Footer />
         </QueryProviders>
-        <Footer />
       </body>
     </html>
   );

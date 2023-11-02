@@ -20,6 +20,9 @@ function QueryProviders({ children }: Props) {
       },
     })
   );
+  client.invalidateQueries({
+    queryKey: ["me"],
+  });
 
   return (
     <QueryClientProvider client={client}>

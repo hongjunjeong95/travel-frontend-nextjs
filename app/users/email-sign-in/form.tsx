@@ -4,12 +4,14 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
-import { apiClient } from "@apis/network/client";
-import { SignInBodyDto, SignInResponseDto } from "@apis/dtos/auth/sign-in.dto";
+
 import Input from "@components/common/input";
 import FormError from "@components/common/formError";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
+import { clientApi } from "@client/apis/network/client.api";
+import { SuccessInterceptorResponse } from "apis/common/dto/interceptor-response.dto";
+import { SignInBodyDto } from "@client/apis/dtos/auth/sign-in.dto";
 
 export type SignInFormType = {
   email: string;
@@ -17,7 +19,7 @@ export type SignInFormType = {
 };
 const EmailSignInForm = () => {
   const router = useRouter();
-  const authService = apiClient.auth;
+  const authService = clientApi.auth;
 
   const validationSchema = Joi.object<SignInFormType>({
     email: Joi.string()
@@ -55,7 +57,12 @@ const EmailSignInForm = () => {
     isError,
     error: queryError,
     mutateAsync: signInMutate,
-  } = useMutation<SignInResponseDto, Error, SignInBodyDto, unknown>({
+  } = useMutation<
+    SuccessInterceptorResponse<void>,
+    Error,
+    SignInBodyDto,
+    unknown
+  >({
     mutationFn: authService.signIn,
   });
 

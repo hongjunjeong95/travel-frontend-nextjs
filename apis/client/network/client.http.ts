@@ -1,19 +1,23 @@
+import { SuccessInterceptorResponse } from "apis/common/dto/interceptor-response.dto";
 import axios, {
-  AxiosError,
   AxiosRequestConfig,
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
 
-export class HttpClient {
+export class ClientHttpClient {
   constructor(private readonly baseURL: string) {}
 
   async PlainAPI<Res, Data>(
     url: string,
     options?: AxiosRequestConfig<Data>
-  ): Promise<Res> {
+  ): Promise<SuccessInterceptorResponse<Res>> {
     try {
-      const res = await axios.request<Res, AxiosResponse<Res>, Data>({
+      const res = await axios.request<
+        SuccessInterceptorResponse<Res>,
+        AxiosResponse<SuccessInterceptorResponse<Res>>,
+        Data
+      >({
         url: `${this.baseURL}${url}`,
         ...options,
         headers: {
@@ -43,13 +47,10 @@ export class HttpClient {
     return config;
   };
 
-  isRefreshing = false;
-  failedQueue = [];
-
   async API<Res, Data>(
     url: string,
     options?: AxiosRequestConfig<Data>
-  ): Promise<Res> {
+  ): Promise<SuccessInterceptorResponse<Res>> {
     const api = axios.create({
       baseURL: this.baseURL,
       ...options,
@@ -63,7 +64,11 @@ export class HttpClient {
     api.interceptors.request.use(this.headerTokenConfig);
 
     try {
-      const res = await api.request<Res, AxiosResponse<Res>, Data>({
+      const res = await api.request<
+        SuccessInterceptorResponse<Res>,
+        AxiosResponse<SuccessInterceptorResponse<Res>>,
+        Data
+      >({
         url,
         ...options,
         headers: {
@@ -76,9 +81,10 @@ export class HttpClient {
     } catch (error: any) {
       const res = error.response;
       const message =
-        res.data && res.data.error.message
+        res?.data && res?.data?.error?.message
           ? res.data.error.message
           : "Something went wrong! 🤪";
+
       throw new Error(message);
     }
   }
