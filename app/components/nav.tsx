@@ -7,7 +7,7 @@ export default async function Nav() {
 
   return (
     <nav className="flex justify-between items-center mb-5">
-      <div className="flex items-center">
+      <div className="flex items-center w-1/2">
         <Link href="/" className="mr-10 text-2xl font-bold">
           TravelApp
         </Link>
@@ -17,36 +17,36 @@ export default async function Nav() {
           placeholder="상품 검색"
         />
       </div>
-      <div className="flex justify-between w-80 items-center ">
+      <div className="flex justify-between items-center">
         {data ? (
           <>
             <Link
               href={"/users/sign-in"}
-              className="hover:bg-gray-200 text-gray-500 px-4 py-2 transition-all duration-400"
+              className="hover:bg-gray-200 text-gray-500 py-2 px-3 transition-all duration-400"
             >
               위시리스트
             </Link>
             <Link
               href={"/users/sign-in"}
-              className="hover:bg-gray-200 text-gray-500 px-4 py-2 transition-all duration-400"
+              className="hover:bg-gray-200 text-gray-500 py-2 px-3  transition-all duration-400"
             >
               내 여행
             </Link>
             <Link
               href={"/users/sign-in"}
-              className="hover:bg-gray-200 text-gray-500 px-4 py-2 transition-all duration-400"
+              className="hover:bg-gray-200 text-gray-500 py-2 px-3  transition-all duration-400"
             >
               메시지
             </Link>
             <Link
               href={"/users/sign-in"}
-              className="hover:bg-gray-200 text-gray-500 px-4 py-2 transition-all duration-400"
+              className="hover:bg-gray-200 text-gray-500 py-2 px-3  transition-all duration-400"
             >
               알림
             </Link>
             <Link
               href={"/users/sign-in"}
-              className="hover:bg-gray-200 text-gray-500 px-4 py-2 transition-all duration-400"
+              className="hover:bg-gray-200 text-gray-500 py-2 px-3  transition-all duration-400"
             >
               프로필
             </Link>
